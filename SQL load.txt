@@ -1,0 +1,27 @@
+CREATE TABLE `buffered_items` (
+  `item_id` int(10) unsigned NOT NULL,					-- ID обь€влени€
+  `days_left` int(11) DEFAULT NULL,					-- остаток дней до сн€ти€ с публикации.
+  PRIMARY KEY (`item_id`),
+  CONSTRAINT `id` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `items` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,			-- ID объ€влени€
+  `user_id` int(11) unsigned NOT NULL DEFAULT '0',			-- ID пользовател€
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1',			-- статус объ€влени€
+  `title` varchar(150) NOT NULL DEFAULT '',				-- заголовок объ€влени€
+  `link` text,								-- ссылка на страницу просмотра объ€влени€
+  `descr` text,								-- описание объ€влени€
+  `publicated_to` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',	-- срок окончани€ публикации объ€влени€
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+
+CREATE TABLE `users` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,			-- ID пользовател€
+  `email` text,								-- Email пользовател€
+  PRIMARY KEY (`id`)							
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+
